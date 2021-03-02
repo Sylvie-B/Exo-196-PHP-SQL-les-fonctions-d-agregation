@@ -1,3 +1,9 @@
+<?php
+$server = 'localhost';
+$db = 'exo-196';
+$user = 'root';
+$pass = '';
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -24,6 +30,31 @@
      */
 
     // TODO Votre code ici, commencez par require un des objet de connexion que nous avons fait ensemble.
+    try {
+
+    $bdd = new PDO("mysql:host=$server;dbname=$db;charset=utf8", $user, $pass);
+    $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    /* 1. Sélectionnez et affichez tous les utilisateurs dont le nom est 'Conor' */
+    // TODO votre code ici.
+    $bdd->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+
+//
+//        $select = $pdo->prepare("SELECT MIN() from user");
+//        $ref = $select->execute();
+//
+//        echo "<div class='info'>Age minimum des utilisateurs : <br>";
+//        if($ref) {
+//            foreach ($select->fetchAll() ){
+//                echo $user['min'];
+//            }
+//        }
+//        echo "</div>";
+    }
+    catch (PDOException $exception) {
+        echo $exception->getMessage();
+    }
+
 
 
     ?>
