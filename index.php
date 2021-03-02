@@ -31,8 +31,33 @@
 
     try {
 
-    // TODO votre code ici.
+        // TODO votre code ici.
+        $parts = $link->prepare("SELECT MIN(age) as minus FROM `exo-196`.user");
+        $state = $parts->execute();
 
+        if($state){
+            $min = $parts->fetch();
+            echo "Age minimum : ".$min['minus']." ans";
+        }
+        echo "<br>";
+
+        $parts = $link->prepare("SELECT MAX(age) as max FROM `exo-196`.user");
+        $state = $parts->execute();
+
+        if($state){
+            $max = $parts->fetch();
+            echo "Age maximum : ".$max['max']." ans";
+        }
+        echo "<br>";
+
+        $parts = $link->prepare("SELECT count(*) as number FROM `exo-196`.user");
+        $state = $parts->execute();
+
+        if($state){
+            $count = $parts->fetch();
+            echo "Nombre d'utilisateurs : ".$count['number'];
+        }
+        echo "<br>";
 
     }
     catch (PDOException $exception) {
