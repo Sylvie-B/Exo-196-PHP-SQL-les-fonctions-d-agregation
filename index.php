@@ -59,12 +59,36 @@
         }
         echo "<br>";
 
+        $parts = $link->prepare("SELECT count(numero) as nbr FROM `exo-196`.user WHERE numero >= 5");
+        $state = $parts->execute();
+
+        if($state){
+            $count = $parts->fetch();
+            echo "Nombre d'utilisateurs ayant un numéro de rue plus grand ou égal à 5 : ".$count['nbr'];
+        }
+        echo "<br>";
+
+        $parts = $link->prepare("SELECT AVG(age) as moy FROM `exo-196`.user");
+        $state = $parts->execute();
+
+        if($state){
+            $result = $parts->fetch();
+            echo "Moyenne d'âge des utilisateurs : ".$result['moy']." ans";
+        }
+        echo "<br>";
+
+        $parts = $link->prepare("SELECT SUM(numero) as addNbr FROM `exo-196`.user");
+        $state = $parts->execute();
+
+        if($state){
+            $sum = $parts->fetch();
+            echo "Somme des numéros de maison des utilisateurs : ".$sum['addNbr'];
+        }
+
     }
     catch (PDOException $exception) {
         echo $exception->getMessage();
     }
-
-
 
     ?>
 </body>
